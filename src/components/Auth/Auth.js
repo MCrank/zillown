@@ -8,7 +8,7 @@ class Auth extends React.Component {
     authRequests
       .authenticate()
       .then(() => {
-        // Do Something here
+        this.props.isAuthenticated();
       })
       .catch(error => console.error('There was an error with AuthRequest', error));
   };
