@@ -18,4 +18,6 @@ const getRequest = () => new Promise((resolve, reject) => {
     .catch(error => reject(error));
 });
 
-export default { getRequest };
+const deleteListing = listingId => Axios.delete(`${fireBaseUrl}/listings/${listingId}.json`);
+
+export default { getRequest, deleteListing };

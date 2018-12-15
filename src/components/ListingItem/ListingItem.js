@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import listingShape from '../../helpers/propz/listingShape';
 import formatPrice from '../../helpers/formatPrice';
@@ -9,18 +10,24 @@ import './ListingItem.scss';
 class ListingItem extends React.Component {
   static propTypes = {
     listing: listingShape,
+    deleteSingleListing: PropTypes.func,
+  };
+
+  deleteEvent = (e) => {
+    e.preventDefault();
+    const { deleteSingleListing, listing } = this.props;
+    deleteSingleListing(listing.id);
   };
 
   render() {
     const { listing } = this.props;
     const uid = authRequests.getCurrentUid();
     const makeButtons = () => {
-      console.log(uid);
       if (listing.uid === uid) {
         return (
           <div>
             <span className="col">
-              <button className="btn btn-default">
+              <button className="btn btn-default" onClick={this.deleteEvent}>
                 <i className="fas fa-trash-alt" />
               </button>
             </span>
