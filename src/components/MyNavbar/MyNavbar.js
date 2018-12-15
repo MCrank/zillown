@@ -1,10 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
 } from 'reactstrap';
 import './MyNavbar.scss';
 
 class MyNavbar extends React.Component {
+  static propTypes = {
+    isAuthed: PropTypes.bool,
+    logoutClickEvent: PropTypes.func,
+  };
+
   state = {
     isOpen: false,
   };
