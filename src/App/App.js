@@ -63,6 +63,17 @@ class App extends Component {
       .catch(error => console.error('Error with the Delete single', error));
   };
 
+  formSubmitEvent = (newListing) => {
+    listingRequests
+      .postRequest(newListing)
+      .then(() => {
+        listingRequests.getRequest().then((listings) => {
+          this.setState({ listings });
+        });
+      })
+      .catch(err => console.error('Error with posting new Listing', err));
+  };
+
   render() {
     const logoutClickEvent = () => {
       authRequests.logoutUser();
@@ -87,7 +98,7 @@ class App extends Component {
           <Building />
         </div>
         <div className="row">
-          <ListingForm />
+          <ListingForm onSubmit={this.formSubmitEvent} />
         </div>
       </div>
     );

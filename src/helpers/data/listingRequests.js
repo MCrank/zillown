@@ -20,4 +20,6 @@ const getRequest = () => new Promise((resolve, reject) => {
 
 const deleteListing = listingId => Axios.delete(`${fireBaseUrl}/listings/${listingId}.json`);
 
-export default { getRequest, deleteListing };
+const postRequest = listing => Axios.post(`${fireBaseUrl}/listings.json`, listing);
+
+export default { getRequest, deleteListing, postRequest };
